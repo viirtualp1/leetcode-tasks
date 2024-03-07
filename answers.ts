@@ -5,6 +5,12 @@ enum COLORS {
 }
 
 function print(text: string, color: COLORS) {
+  if (!color) {
+    console.log(text);
+
+    return;
+  }
+
   console.log(color, text);
 }
 
@@ -28,9 +34,8 @@ export function runTestCases<T, K>(
       return;
     }
 
-    print(
-      `Test ${testCaseIdx} failure (expected: ${testCase.output}, actual: ${result})`,
-      COLORS.RED
-    );
+    print(`Test ${testCaseIdx} failure`, COLORS.RED);
+    console.log(`  - Expected: ${testCase.output}`);
+    console.log(`  - Actual: ${result}`);
   });
 }
